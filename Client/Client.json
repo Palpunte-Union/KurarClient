@@ -118,7 +118,7 @@
     },
     "assets": "1.18",
     "complianceLevel": 1,
-    "id": "1.18.1",
+    "id": "KurarClient",
     "javaVersion": {
         "component": "java-runtime-beta",
         "majorVersion": 17
