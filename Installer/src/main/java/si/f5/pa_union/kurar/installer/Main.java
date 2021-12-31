@@ -12,8 +12,8 @@ public class Main {
     private static boolean IS_FIRST_INSTALL = false;
 
     public static void main(String[] args) {
-        downloadFileFromUrl("", new File(getKurarDirectory(), "KurarClient.jar"));
-        downloadFileFromUrl("", new File(getKurarDirectory(), "KurarClient.json"));
+        downloadFileFromUrl("https://palpunte-union.github.io/KurarClient/installer/latest/Launcher.jar", new File(getKurarDirectory(), "KurarClient.jar"));
+        downloadFileFromUrl("https://palpunte-union.github.io/KurarClient/installer/latest/Launcher.json", new File(getKurarDirectory(), "KurarClient.json"));
         JOptionPane.showMessageDialog(null, IS_FIRST_INSTALL ? "Thank you for installing KurarClient.\nIt was successfully installed." : "KurarClient was successfully installed.");
     }
 
