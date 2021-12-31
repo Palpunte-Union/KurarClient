@@ -1,4 +1,4 @@
-package si.f5.pa_union;
+package si.f5.pa_union.kurar.installer;
 
 import javax.swing.*;
 import java.io.File;
