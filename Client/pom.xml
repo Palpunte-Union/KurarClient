@@ -45,25 +45,6 @@
     <dependencies>
         <!-- Forge Dependency -->
         <dependency>
-            <groupId>net.minecraftforge.gradle</groupId>
-            <artifactId>ForgeGradle</artifactId>
-            <version>5.1.27</version>
-            <scope>provided</scope>
-
-            <!-- Log4j Not Patched -->
-            <exclusions>
-                <exclusion>
-                    <groupId>org.apache.logging.log4j</groupId>
-                    <artifactId>log4j-api</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.apache.logging.log4j</groupId>
-                    <artifactId>log4j-core</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-
-        <dependency>
             <groupId>net.minecraftforge</groupId>
             <artifactId>forgespi</artifactId>
             <version>4.0.11</version>
