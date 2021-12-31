@@ -9,6 +9,7 @@ import zsawyer.mods.mumblelink.addons.pa.es.ExtendedPASupport;
 public class KurarClient {
 
     private static KurarClient instance;
+    public static boolean isUpdated = false;
 
     public KurarClient() {
         instance = this;
