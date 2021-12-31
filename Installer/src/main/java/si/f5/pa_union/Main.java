@@ -14,7 +14,7 @@ public class Main {
     public static void main(String[] args) {
         downloadFileFromUrl("", new File(getKurarDirectory(), "KurarClient.jar"));
         downloadFileFromUrl("", new File(getKurarDirectory(), "KurarClient.json"));
-        JOptionPane.showMessageDialog(null, IS_FIRST_INSTALL ? "Thank you for installing KurarClient.\nKurarClient was successfully installed." : "KurarClient was successfully installed.");
+        JOptionPane.showMessageDialog(null, IS_FIRST_INSTALL ? "Thank you for installing KurarClient.\nIt was successfully installed." : "KurarClient was successfully installed.");
     }
 
     public static void downloadFileFromUrl(String url, File file) {
