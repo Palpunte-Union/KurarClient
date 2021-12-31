@@ -1,0 +1,66 @@
+@@ -252,6 +252,10 @@
+ import org.apache.logging.log4j.LogManager;
+ import org.apache.logging.log4j.Logger;
+ import org.lwjgl.util.tinyfd.TinyFileDialogs;
++import si.f5.pa_union.KurarClient;
++import si.f5.pa_union.discord.DiscordRPCLink;
++import zsawyer.mods.mumblelink.MumbleLinkImpl;
++import zsawyer.mods.mumblelink.UpdateTicker;
+ 
+ @OnlyIn(Dist.CLIENT)
+ public class Minecraft extends ReentrantBlockableEventLoop<Runnable> implements WindowEventHandler {
+@@ -401,6 +405,7 @@
+       this.userApiService = this.createUserApiService(yggdrasilauthenticationservice, p_91084_);
+       this.user = p_91084_.user.user;
+       LOGGER.info("Setting user: {}", (Object)this.user.getName());
++      DiscordRPCLink.UserName = this.user.getName();
+       LOGGER.debug("(Session ID is {})", (Object)this.user.getSessionId());
+       this.demo = p_91084_.game.demo;
+       this.allowsMultiplayer = !p_91084_.game.disableMultiplayer;
+@@ -456,6 +461,7 @@
+       this.mainRenderTarget.setClearColor(0.0F, 0.0F, 0.0F, 0.0F);
+       this.mainRenderTarget.clear(ON_OSX);
+       this.resourceManager = new SimpleReloadableResourceManager(PackType.CLIENT_RESOURCES);
++      new KurarClient();
+       this.resourcePackRepository.reload();
+       this.options.loadSelectedResourcePacks(this.resourcePackRepository);
+       this.languageManager = new LanguageManager(this.options.languageCode);
+@@ -559,10 +565,7 @@
+    }
+ 
+    private String createTitle() {
+-      StringBuilder stringbuilder = new StringBuilder("Minecraft");
+-      if (checkModStatus().shouldReportAsModified()) {
+-         stringbuilder.append("*");
+-      }
++      StringBuilder stringbuilder = new StringBuilder("Kurar Client");
+ 
+       stringbuilder.append(" ");
+       stringbuilder.append(SharedConstants.getCurrentVersion().getName());
+@@ -571,12 +574,16 @@
+          stringbuilder.append(" - ");
+          if (this.singleplayerServer != null && !this.singleplayerServer.isPublished()) {
+             stringbuilder.append(I18n.get("title.singleplayer"));
++            DiscordRPCLink.details = I18n.get("title.singleplayer");
+          } else if (this.isConnectedToRealms()) {
+             stringbuilder.append(I18n.get("title.multiplayer.realms"));
++            DiscordRPCLink.details = I18n.get("title.multiplayer.realms");
+          } else if (this.singleplayerServer == null && (this.currentServer == null || !this.currentServer.isLan())) {
+             stringbuilder.append(I18n.get("title.multiplayer.other"));
++            DiscordRPCLink.details = I18n.get("title.multiplayer.other");
+          } else {
+             stringbuilder.append(I18n.get("title.multiplayer.lan"));
++            DiscordRPCLink.details = I18n.get("title.multiplayer.lan");
+          }
+       }
+ 
+@@ -1683,6 +1690,9 @@
+       this.profiler.popPush("keyboard");
+       this.keyboardHandler.tick();
+       this.profiler.pop();
++      if (UpdateTicker.i) {
++         MumbleLinkImpl.instance.getUpdateTicker().tickEnd();
++      }
+    }
+ 
+    private boolean isMultiplayerServer() {
