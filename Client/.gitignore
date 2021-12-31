@@ -3,6 +3,14 @@ def/
 src/main/java/com/mojang/
 src/main/java/net/minecraft
 
+# Assets
+src/main/resources/assets/
+src/main/resources/data/
+src/main/resources/flightrecorder-config.jfc
+src/main/resources/log4j2.xml
+src/main/resources/pack.png
+src/main/resources/version.json
+
 
 #IDE files
 .idea
