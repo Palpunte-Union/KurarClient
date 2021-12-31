@@ -18,5 +18,6 @@
         <module>Client</module>
         <module>Client</module>
         <module>Installer</module>
+        <module>Launcher</module>
     </modules>
 </project>
