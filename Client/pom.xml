@@ -16,6 +16,21 @@
         <maven.compiler.target>17</maven.compiler.target>
     </properties>
 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.github.eighty88</groupId>
+                <artifactId>MvnPatcher</artifactId>
+                <version>1.0-SNAPSHOT</version>
+                <configuration>
+                    <root>${basedir}/def</root>
+                    <target>${basedir}/src</target>
+                    <patches>${basedir}/patches</patches>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
     <repositories>
         <repository>
             <id>Forge Repository</id>
