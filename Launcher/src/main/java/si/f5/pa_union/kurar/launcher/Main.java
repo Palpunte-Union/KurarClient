@@ -15,6 +15,7 @@ import java.util.List;
 
 public class Main {
     public static String LAUNCHER_VERSION = "1.0.0";
+    public boolean isUpdated = false;
 
     public static void main(String[] args) {
         if (Utils.checkLauncherUpdate()) {
@@ -31,6 +32,7 @@ public class Main {
                     new Utils().downloadJson();
                     new Utils().downloadVersionJson();
                     new Downloader("https://palpunte-union.github.io/KurarClient/client/" + Utils.readURL() + "/KurarClient.jar").DownloadTo(Utils.getKurarDirectory().getPath());
+                    isUpdated = true;
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -46,6 +48,7 @@ public class Main {
                         new Downloader("https://palpunte-union.github.io/KurarClient/client/" + Utils.readURL() + "/KurarClient.jar").DownloadTo(Utils.getKurarDirectory().getPath());
                     if(!new File(Utils.getKurarDirectory(), "KurarClient.jar").exists())
                         new Downloader("https://palpunte-union.github.io/KurarClient/client/" + Utils.readURL() + "/KurarClient.jar").DownloadTo(Utils.getKurarDirectory().getPath());
+                    isUpdated = true;
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -85,7 +88,7 @@ public class Main {
                 jvmArgs.add("-XstartOnFirstThread");
             if (launchArgs == null || launchArgs.length == 0) {
                 String assets = (new File(Utils.getWorkingDirectory(), "assets")).getAbsolutePath();
-                launchArgs = new String[]{"--version", "mcp", "--accessToken", "0", "--assetsDir", assets, "--assetIndex", Utils.getAssetsVersion(), "--userProperties", "{}"};
+                launchArgs = new String[]{"--version", "mcp", "--accessToken", "0", "--assetsDir", assets, "--assetIndex", Utils.getAssetsVersion(), "--userProperties", "{}", "--updated", isUpdated ? "true" : "false"};
             } else {
                 jvmArgs.addAll(inputArguments);
             }
