@@ -3,7 +3,6 @@ package si.f5.pa_union.kurar.launcher;
 import si.f5.pa_union.kurar.launcher.resources.Manager;
 import si.f5.pa_union.kurar.launcher.resources.type.Library;
 
-import javax.swing.*;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
@@ -17,10 +16,9 @@ public class Main {
     public static String LAUNCHER_VERSION = "1.0.0";
     public boolean isUpdated = false;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         if (Utils.checkLauncherUpdate()) {
-            JOptionPane.showMessageDialog(null, "KurarClient Launcherのアップデートがあります。\nダウンロードしてインストールしてください。");
-            return;
+            throw new Exception("ランチャーのアップデートがあります。");
         }
         new Main(args);
     }

@@ -25,7 +25,9 @@ public class Main {
         }
         try {
             if (file.delete()) {
-                throw new IOException();
+                if (file.exists()) {
+                    throw new IOException();
+                }
             }
 
             HttpURLConnection con = (HttpURLConnection)(new URL(url)).openConnection();
