@@ -1,0 +1,9 @@
+@@ -70,7 +70,7 @@
+    protected ItemRenderer itemRenderer;
+    public int width;
+    public int height;
+-   private final List<Widget> renderables = Lists.newArrayList();
++   protected final List<Widget> renderables = Lists.newArrayList();
+    public boolean passEvents;
+    protected Font font;
+    @Nullable
