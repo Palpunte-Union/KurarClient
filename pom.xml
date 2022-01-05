@@ -7,7 +7,7 @@
     <groupId>si.f5.pa_union</groupId>
     <artifactId>KurarClient</artifactId>
     <packaging>pom</packaging>
-    <version>1.0-SNAPSHOT</version>
+    <version>0.1.0</version>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
@@ -15,7 +15,6 @@
     </properties>
 
     <modules>
-        <module>Client</module>
         <module>Client</module>
         <module>Installer</module>
         <module>Launcher</module>
