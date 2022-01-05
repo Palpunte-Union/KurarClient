@@ -22,7 +22,7 @@ public class DiscordRPCLink {
         presence.details = "In Menu";
         presence.largeImageText = "Kurar Client";
         presence.state = UserName;
-        presence.largeImageKey = "1_17_kurar_logo";
+        presence.largeImageKey = "chest_logo";
         lib.Discord_UpdatePresence(presence);
         new Thread(() -> {
             while (!Thread.currentThread().isInterrupted()) {
@@ -40,7 +40,7 @@ public class DiscordRPCLink {
         presence.details = details;
         presence.state = UserName;
         presence.largeImageText = "Kurar Client";
-        presence.largeImageKey = "1_17_kurar_logo";
+        presence.largeImageKey = "chest_logo";
         lib.Discord_UpdatePresence(presence);
     }
 }
