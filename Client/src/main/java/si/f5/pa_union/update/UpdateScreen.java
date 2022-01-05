@@ -44,9 +44,9 @@ public class UpdateScreen extends Screen {
                     entries.add(new TextComponent(s));
                 }
             }));
-            this.list = new UpdateList(this.minecraft, this.width, this.height, 0, this.height, 25, entries);
+            this.list = new UpdateList(this.minecraft, this.width, this.height - 30, 0, 0, entries);
             this.addWidget(list);
-            this.addRenderableWidget(new Button(this.width / 2 - 100, this.height - 27, 200, 20, new TextComponent("閉じる"), (p_96827_) -> {
+            this.addRenderableWidget(new Button(this.width / 2 - 100, this.height - 25, 200, 20, new TextComponent("閉じる"), (p_96827_) -> {
                 Minecraft.getInstance().setScreen(null);
             }));
         } catch (IOException | URISyntaxException e) {

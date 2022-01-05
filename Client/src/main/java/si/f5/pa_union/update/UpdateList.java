@@ -1,67 +1,53 @@
 package si.f5.pa_union.update;
 
+import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.Tesselator;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.Font;
-import net.minecraft.client.gui.components.ObjectSelectionList;
+import net.minecraft.client.gui.narration.NarrationElementOutput;
 import net.minecraft.network.chat.Component;
+import net.minecraftforge.client.gui.ScrollPanel;
 
 import java.util.List;
 
-public class UpdateList extends ObjectSelectionList<UpdateList.Entry> {
-    int size;
-    public UpdateList(Minecraft p_94010_, int p_94011_, int p_94012_, int p_94013_, int p_94014_, int p_94015_, List<Component> entries) {
-        super(p_94010_, p_94011_, p_94012_, 0, p_94012_ - 32, 2 * p_94010_.font.lineHeight + 8);
-        addEntry(new Entry(entries, this));
-        size = entries.size();
+public class UpdateList extends ScrollPanel {
+    private static final int PADDING = 6;
+    List<Component> lines;
+
+    public UpdateList(Minecraft client, int width, int height, int top, int left, List<Component> lines) {
+        super(client, width, height, top, left);
+        this.lines = lines;
     }
 
     @Override
-    public int getMaxScroll() {
-        return Math.max(0, Minecraft.getInstance().font.lineHeight * size - (this.y1 - this.y0 - 4));
+    public NarrationPriority narrationPriority() {
+        return NarrationPriority.NONE;
     }
 
     @Override
-    protected int getScrollbarPosition()
+    public void updateNarration(NarrationElementOutput p_169152_) {}
+
+    @Override
+    public int getContentHeight()
     {
-        return this.width - 30;
+        int height = 50;
+        height += (lines.size() * Minecraft.getInstance().font.lineHeight);
+        if (height < this.bottom - this.top - 8)
+            height = this.bottom - this.top - 8;
+        return height;
     }
 
     @Override
-    public int getRowWidth()
-    {
-        return this.width;
-    }
-
-    public int getHeight() {
-        return Minecraft.getInstance().font.lineHeight * size - (this.y1 - this.y0 - 4);
-    }
-
-    public static class Entry extends ObjectSelectionList.Entry<UpdateList.Entry>  {
-        final List<Component> entry;
-        final UpdateList parent;
-
-        public Entry(List<Component> entry, UpdateList parent) {
-            this.entry = entry;
-            this.parent = parent;
-        }
-
-        @Override
-        public void render(PoseStack pStack, int entryIdx, int top, int left, final int entryWidth, final int entryHeight, final int mouseX, final int mouseY, final boolean p_194999_5_, final float partialTicks) {
-            Font font = Minecraft.getInstance().font;
-            final List<Component> strings = entry;
-            int y = top + 2;
-            for (int i = 0; i < Math.max(strings.size(), 2); i++) {
-                 if (y >= 0) {
-                     font.draw(pStack, strings.get(i), left + 5, y, 0xFFFFFF);
-                 }
-                 y += font.lineHeight;
+    protected void drawPanel(PoseStack mStack, int entryRight, int relativeY, Tesselator tess, int mouseX, int mouseY) {
+        for (Component line : lines)
+        {
+            if (line != null)
+            {
+                RenderSystem.enableBlend();
+                Minecraft.getInstance().font.drawShadow(mStack, line, left + PADDING, relativeY, 0xFFFFFF);
+                RenderSystem.disableBlend();
             }
-        }
-
-        @Override
-        public Component getNarration() {
-            return entry.get(0);
+            relativeY += Minecraft.getInstance().font.lineHeight;
         }
     }
 }
