@@ -86,7 +86,7 @@ public class Main {
                 jvmArgs.add("-XstartOnFirstThread");
             if (launchArgs == null || launchArgs.length == 0) {
                 String assets = (new File(Utils.getWorkingDirectory(), "assets")).getAbsolutePath();
-                launchArgs = new String[]{"--version", "mcp", "--accessToken", "0", "--assetsDir", assets, "--assetIndex", Utils.getAssetsVersion(), "--userProperties", "{}", "--updated", isUpdated ? "true" : "false"};
+                launchArgs = new String[]{"--version", "mcp", "--accessToken", "0", "--assetsDir", assets, "--assetIndex", Utils.getAssetsVersion(), "--userProperties", "{}"};
             } else {
                 jvmArgs.addAll(inputArguments);
             }
@@ -94,6 +94,7 @@ public class Main {
             jvmArgs.add(classPathBuilder.toString());
             jvmArgs.add("net.minecraft.client.main.Main");
             jvmArgs.addAll(Arrays.asList(launchArgs));
+            jvmArgs.addAll(Arrays.asList("--updated", isUpdated ? "true" : "false"));
             StringBuilder sb = new StringBuilder("Launching game");
             for (String arg : jvmArgs)
                 sb.append(" ").append(arg);
