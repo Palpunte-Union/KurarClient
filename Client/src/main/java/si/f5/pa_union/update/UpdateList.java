@@ -22,8 +22,15 @@ public class UpdateList extends ObjectSelectionList<UpdateList.Entry> {
     }
 
     @Override
-    public int getScrollBottom() {
-        return super.getScrollBottom();
+    protected int getScrollbarPosition()
+    {
+        return this.width - 30;
+    }
+
+    @Override
+    public int getRowWidth()
+    {
+        return this.width;
     }
 
     public static class Entry extends ObjectSelectionList.Entry<UpdateList.Entry>  {
