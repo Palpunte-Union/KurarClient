@@ -245,7 +245,7 @@ public class Utils {
 
     public static boolean checkLauncherUpdate() {
         try {
-            return readURL("https://palpunte-union.github.io/KurarClient/launcher/latest.json").equals(Main.LAUNCHER_VERSION);
+            return !readURL("https://palpunte-union.github.io/KurarClient/launcher/latest.json").equals(Main.LAUNCHER_VERSION);
         } catch (Exception e) {
             e.printStackTrace();
             return false;
