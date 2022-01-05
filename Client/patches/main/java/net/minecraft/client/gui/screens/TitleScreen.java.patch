@@ -14,18 +14,20 @@
  
  @OnlyIn(Dist.CLIENT)
  public class TitleScreen extends Screen {
-@@ -159,9 +161,13 @@
+@@ -159,8 +161,11 @@
           Screen screen = (Screen)(this.minecraft.options.skipMultiplayerWarning ? new JoinMultiplayerScreen(this) : new SafetyScreen(this));
           this.minecraft.setScreen(screen);
        }, button$ontooltip))).active = flag;
 -      (this.addRenderableWidget(new Button(this.width / 2 - 100, p_96764_ + p_96765_ * 2, 200, 20, new TranslatableComponent("menu.online"), (p_96776_) -> {
-+      int j = this.height / 4 + 48;
-+      (this.addRenderableWidget(new Button(this.width / 2 - 100, j + 72 + 12, 98, 20, new TranslatableComponent("menu.online"), (p_96788_) -> {
++      (this.addRenderableWidget(new Button(this.width / 2 + 2, p_96764_ + p_96765_ * 2, 98, 20, new TranslatableComponent("menu.online"), (p_96786_) -> {
           this.realmsButtonClicked();
-       }, button$ontooltip))).active = flag;
-+      (this.addRenderableWidget(new Button(this.width / 2 + 2, j + 72 + 12, 98, 20, new TextComponent("更新情報"), (p_96786_) -> {
-+         this.minecraft.setScreen(new UpdateScreen());
 +      }))).active = flag;
++      (this.addRenderableWidget(new Button(this.width / 2 - 100, p_96764_ + p_96765_ * 2, 98, 20, new TextComponent("更新情報"), (p_96788_) -> {
++         this.minecraft.setScreen(new UpdateScreen());
+       }, button$ontooltip))).active = flag;
+    }
+ 
+g;
     }
  
     private void createDemoMenuOptions(int p_96773_, int p_96774_) {
