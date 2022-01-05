@@ -12,7 +12,7 @@ public class UpdateList extends ObjectSelectionList<UpdateList.Entry> {
     int size;
     public UpdateList(Minecraft p_94010_, int p_94011_, int p_94012_, int p_94013_, int p_94014_, int p_94015_, List<Component> entries) {
         super(p_94010_, p_94011_, p_94012_, 0, p_94012_ - 32, 2 * p_94010_.font.lineHeight + 8);
-        addEntry(new Entry(entries));
+        addEntry(new Entry(entries, this));
         size = entries.size();
     }
 
@@ -33,11 +33,17 @@ public class UpdateList extends ObjectSelectionList<UpdateList.Entry> {
         return this.width;
     }
 
+    public int getHeight() {
+        return Minecraft.getInstance().font.lineHeight * size - (this.y1 - this.y0 - 4);
+    }
+
     public static class Entry extends ObjectSelectionList.Entry<UpdateList.Entry>  {
         final List<Component> entry;
+        final UpdateList parent;
 
-        public Entry(List<Component> entry) {
+        public Entry(List<Component> entry, UpdateList parent) {
             this.entry = entry;
+            this.parent = parent;
         }
 
         @Override
@@ -46,8 +52,10 @@ public class UpdateList extends ObjectSelectionList<UpdateList.Entry> {
             final List<Component> strings = entry;
             int y = top + 2;
             for (int i = 0; i < Math.max(strings.size(), 2); i++) {
-                font.draw(pStack, strings.get(i), left + 5, y, 0xFFFFFF);
-                y += font.lineHeight;
+                 if (y >= 0) {
+                     font.draw(pStack, strings.get(i), left + 5, y, 0xFFFFFF);
+                 }
+                 y += font.lineHeight;
             }
         }
 
