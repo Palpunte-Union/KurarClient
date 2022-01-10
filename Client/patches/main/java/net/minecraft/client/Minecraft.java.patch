@@ -51,7 +51,7 @@
  
        stringbuilder.append(" ");
        stringbuilder.append(SharedConstants.getCurrentVersion().getName());
-@@ -571,12 +579,16 @@
+@@ -571,15 +579,20 @@
           stringbuilder.append(" - ");
           if (this.singleplayerServer != null && !this.singleplayerServer.isPublished()) {
              stringbuilder.append(I18n.get("title.singleplayer"));
@@ -68,7 +68,11 @@
           }
        }
  
-@@ -1683,6 +1695,9 @@
++      DiscordRPCLink.update();
+       return stringbuilder.toString();
+    }
+ 
+@@ -1683,6 +1696,9 @@
        this.profiler.popPush("keyboard");
        this.keyboardHandler.tick();
        this.profiler.pop();
