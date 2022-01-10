@@ -3,6 +3,7 @@ package si.f5.pa_union.kurar.launcher;
 import si.f5.pa_union.kurar.launcher.resources.Manager;
 import si.f5.pa_union.kurar.launcher.resources.type.Library;
 
+import javax.swing.*;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
@@ -18,7 +19,8 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
         if (Utils.checkLauncherUpdate()) {
-            throw new Exception("ランチャーのアップデートがあります。");
+            JOptionPane.showMessageDialog(null, "ランチャーのアップデートがあります。");
+            return;
         }
         new Main(args);
     }
