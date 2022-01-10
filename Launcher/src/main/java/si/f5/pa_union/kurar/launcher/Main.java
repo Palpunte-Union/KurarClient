@@ -17,7 +17,7 @@ public class Main {
     public static String LAUNCHER_VERSION = "1.0.0";
     public boolean isUpdated = false;
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         if (Utils.checkLauncherUpdate()) {
             JOptionPane.showMessageDialog(null, "ランチャーのアップデートがあります。");
             return;
