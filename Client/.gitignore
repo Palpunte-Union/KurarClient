@@ -1,7 +1,8 @@
 # Source code
 def/
 src/main/java/com/mojang/
-src/main/java/net/minecraft
+src/main/java/net/minecraft/
+src/main/java/net/optifine/
 
 # Assets
 src/main/resources/assets/
