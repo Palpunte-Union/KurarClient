@@ -1,9 +1,8 @@
-@@ -10,6 +10,6 @@
- 
-    @DontObfuscate
-    public static String getClientModName() {
--      return "vanilla";
-+      return "kurar";
-    }
+@@ -9,6 +9,6 @@
+     @DontObfuscate
+     public static String getClientModName()
+     {
+-        return "vanilla";
++        return "kurar";
+     }
  }
-

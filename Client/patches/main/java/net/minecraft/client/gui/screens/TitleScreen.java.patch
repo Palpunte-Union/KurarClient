@@ -1,4 +1,4 @@
-@@ -32,6 +32,7 @@
+@@ -35,6 +35,7 @@
  import net.minecraft.core.RegistryAccess;
  import net.minecraft.network.chat.CommonComponents;
  import net.minecraft.network.chat.Component;
@@ -6,24 +6,29 @@
  import net.minecraft.network.chat.TranslatableComponent;
  import net.minecraft.resources.ResourceLocation;
  import net.minecraft.server.MinecraftServer;
-@@ -43,6 +44,7 @@
- import net.minecraftforge.api.distmarker.OnlyIn;
+@@ -46,6 +47,7 @@
+ import net.optifine.reflect.ReflectorForge;
  import org.apache.logging.log4j.LogManager;
  import org.apache.logging.log4j.Logger;
 +import si.f5.pa_union.update.UpdateScreen;
  
- @OnlyIn(Dist.CLIENT)
- public class TitleScreen extends Screen {
-@@ -159,8 +161,11 @@
-          Screen screen = (Screen)(this.minecraft.options.skipMultiplayerWarning ? new JoinMultiplayerScreen(this) : new SafetyScreen(this));
-          this.minecraft.setScreen(screen);
-       }, button$ontooltip))).active = flag;
--      (this.addRenderableWidget(new Button(this.width / 2 - 100, p_96764_ + p_96765_ * 2, 200, 20, new TranslatableComponent("menu.online"), (p_96776_) -> {
-+      (this.addRenderableWidget(new Button(this.width / 2 + 2, p_96764_ + p_96765_ * 2, 98, 20, new TranslatableComponent("menu.online"), (p_96786_) -> {
-          this.realmsButtonClicked();
-+      }))).active = flag;
-+      (this.addRenderableWidget(new Button(this.width / 2 - 100, p_96764_ + p_96765_ * 2, 98, 20, new TextComponent("更新情報"), (p_96788_) -> {
-+         this.minecraft.setScreen(new UpdateScreen());
+ public class TitleScreen extends Screen
+ {
+@@ -215,9 +217,11 @@
+         boolean flag1 = Reflector.ModListScreen_Constructor.exists();
+         int i = flag1 ? this.width / 2 + 2 : this.width / 2 - 100;
+         int j = flag1 ? 98 : 200;
+-        (this.addRenderableWidget(new Button(i, pY + pRowHeight * 2, j, 20, new TranslatableComponent("menu.online"), (p_96775_1_) ->
+-        {
++        (this.addRenderableWidget(new Button(this.width / 2 + 2, pY + pRowHeight * 2, 98, 20, new TranslatableComponent("menu.online"), (p_96786_) -> {
+             this.realmsButtonClicked();
++        }))).active = flag;
++        (this.addRenderableWidget(new Button(this.width / 2 - 100, pY + pRowHeight * 2, 98, 20, new TextComponent("更新情報"), (p_96788_) -> {
++            this.minecraft.setScreen(new UpdateScreen());
+         }, button$ontooltip))).active = flag;
+     }
+ 
+etScreen(new UpdateScreen());
        }, button$ontooltip))).active = flag;
     }
  

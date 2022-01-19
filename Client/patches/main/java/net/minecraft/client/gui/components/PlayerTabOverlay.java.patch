@@ -1,65 +1,72 @@
-@@ -30,6 +30,7 @@
+@@ -28,6 +28,7 @@
+ import net.minecraft.world.scores.PlayerTeam;
+ import net.minecraft.world.scores.Scoreboard;
  import net.minecraft.world.scores.criteria.ObjectiveCriteria;
- import net.minecraftforge.api.distmarker.Dist;
- import net.minecraftforge.api.distmarker.OnlyIn;
 +import si.f5.pa_union.KurarClient;
  
- @OnlyIn(Dist.CLIENT)
- public class PlayerTabOverlay extends GuiComponent {
-@@ -62,7 +63,11 @@
-    }
+ public class PlayerTabOverlay extends GuiComponent
+ {
+@@ -63,7 +64,11 @@
  
-    private Component decorateName(PlayerInfo p_94552_, MutableComponent p_94553_) {
--      return p_94552_.getGameMode() == GameType.SPECTATOR ? p_94553_.withStyle(ChatFormatting.ITALIC) : p_94553_;
-+      if (KurarClient.getInstance().canSeeTrueTabList()) {
-+         return p_94552_.getGameMode() == GameType.SPECTATOR ? p_94553_.withStyle(ChatFormatting.ITALIC) : p_94553_;
-+      } else {
-+         return p_94553_;
-+      }
-    }
+     private Component decorateName(PlayerInfo pPlayerInfo, MutableComponent pName)
+     {
+-        return pPlayerInfo.getGameMode() == GameType.SPECTATOR ? pName.withStyle(ChatFormatting.ITALIC) : pName;
++        if (KurarClient.getInstance().canSeeTrueTabList()) {
++            return pPlayerInfo.getGameMode() == GameType.SPECTATOR ? pName.withStyle(ChatFormatting.ITALIC) : pName;
++        } else {
++            return pName;
++        }
+     }
  
-    public void setVisible(boolean p_94557_) {
-@@ -174,12 +179,23 @@
-                k2 += 9;
-             }
+     public void setVisible(boolean pVisible)
+@@ -203,17 +208,27 @@
  
--            this.minecraft.font.drawShadow(p_94545_, this.getNameForDisplay(playerinfo1), (float)k2, (float)l2, playerinfo1.getGameMode() == GameType.SPECTATOR ? -1862270977 : -1);
--            if (p_94548_ != null && playerinfo1.getGameMode() != GameType.SPECTATOR) {
--               int l5 = k2 + i + 1;
--               int i6 = l5 + l;
--               if (i6 - l5 > 5) {
--                  this.renderTablistScore(p_94548_, l2, gameprofile.getName(), l5, i6, playerinfo1, p_94545_);
+                     k2 += 9;
+                 }
++                if (KurarClient.getInstance().canSeeTrueTabList()) {
++                    this.minecraft.font.drawShadow(p_94545_, this.getNameForDisplay(playerinfo1), (float) k2, (float) l2, playerinfo1.getGameMode() == GameType.SPECTATOR ? -1862270977 : -1);
+ 
+-                this.minecraft.font.drawShadow(p_94545_, this.getNameForDisplay(playerinfo1), (float)k2, (float)l2, playerinfo1.getGameMode() == GameType.SPECTATOR ? -1862270977 : -1);
++                    if (p_94548_ != null && playerinfo1.getGameMode() != GameType.SPECTATOR) {
++                        int l5 = k2 + i + 1;
++                        int i6 = l5 + l;
+ 
+-                if (p_94548_ != null && playerinfo1.getGameMode() != GameType.SPECTATOR)
+-                {
+-                    int l5 = k2 + i + 1;
+-                    int i6 = l5 + l;
++                        if (i6 - l5 > 5) {
++                            this.renderTablistScore(p_94548_, l2, gameprofile.getName(), l5, i6, playerinfo1, p_94545_);
++                        }
++                    }
++                } else {
++                    this.minecraft.font.drawShadow(p_94545_, this.getNameForDisplay(playerinfo1), (float) k2, (float) l2, -1);
+ 
+-                    if (i6 - l5 > 5)
+-                    {
+-                        this.renderTablistScore(p_94548_, l2, gameprofile.getName(), l5, i6, playerinfo1, p_94545_);
++                    if (p_94548_ != null) {
++                        int l5 = k2 + i + 1;
++                        int i6 = l5 + l;
++
++                        if (i6 - l5 > 5) {
++                            this.renderTablistScore(p_94548_, l2, gameprofile.getName(), l5, i6, playerinfo1, p_94545_);
++                        }
+                     }
+                 }
+ 
+@@ -391,7 +406,11 @@
+         {
+             PlayerTeam playerteam = p_94564_.getTeam();
+             PlayerTeam playerteam1 = p_94565_.getTeam();
+-            return ComparisonChain.start().compareTrueFirst(p_94564_.getGameMode() != GameType.SPECTATOR, p_94565_.getGameMode() != GameType.SPECTATOR).compare(playerteam != null ? playerteam.getName() : "", playerteam1 != null ? playerteam1.getName() : "").compare(p_94564_.getProfile().getName(), p_94565_.getProfile().getName(), String::compareToIgnoreCase).result();
 +            if (KurarClient.getInstance().canSeeTrueTabList()) {
-+               this.minecraft.font.drawShadow(p_94545_, this.getNameForDisplay(playerinfo1), (float) k2, (float) l2, playerinfo1.getGameMode() == GameType.SPECTATOR ? -1862270977 : -1);
-+               if (p_94548_ != null && playerinfo1.getGameMode() != GameType.SPECTATOR) {
-+                  int l5 = k2 + i + 1;
-+                  int i6 = l5 + l;
-+                  if (i6 - l5 > 5) {
-+                     this.renderTablistScore(p_94548_, l2, gameprofile.getName(), l5, i6, playerinfo1, p_94545_);
-+                  }
-+               }
++                return ComparisonChain.start().compareTrueFirst(p_94564_.getGameMode() != GameType.SPECTATOR, p_94565_.getGameMode() != GameType.SPECTATOR).compare(playerteam != null ? playerteam.getName() : "", playerteam1 != null ? playerteam1.getName() : "").compare(p_94564_.getProfile().getName(), p_94565_.getProfile().getName(), String::compareToIgnoreCase).result();
 +            } else {
-+               this.minecraft.font.drawShadow(p_94545_, this.getNameForDisplay(playerinfo1), (float) k2, (float) l2, -1);
-+               if (p_94548_ != null) {
-+                  int l5 = k2 + i + 1;
-+                  int i6 = l5 + l;
-+                  if (i6 - l5 > 5) {
-+                     this.renderTablistScore(p_94548_, l2, gameprofile.getName(), l5, i6, playerinfo1, p_94545_);
-+                  }
-                }
-             }
- 
-@@ -313,7 +329,11 @@
-       public int compare(PlayerInfo p_94564_, PlayerInfo p_94565_) {
-          PlayerTeam playerteam = p_94564_.getTeam();
-          PlayerTeam playerteam1 = p_94565_.getTeam();
--         return ComparisonChain.start().compareTrueFirst(p_94564_.getGameMode() != GameType.SPECTATOR, p_94565_.getGameMode() != GameType.SPECTATOR).compare(playerteam != null ? playerteam.getName() : "", playerteam1 != null ? playerteam1.getName() : "").compare(p_94564_.getProfile().getName(), p_94565_.getProfile().getName(), String::compareToIgnoreCase).result();
-+         if (KurarClient.getInstance().canSeeTrueTabList()) {
-+            return ComparisonChain.start().compareTrueFirst(p_94564_.getGameMode() != GameType.SPECTATOR, p_94565_.getGameMode() != GameType.SPECTATOR).compare(playerteam != null ? playerteam.getName() : "", playerteam1 != null ? playerteam1.getName() : "").compare(p_94564_.getProfile().getName(), p_94565_.getProfile().getName(), String::compareToIgnoreCase).result();
-+         } else {
-+            return ComparisonChain.start().compare(playerteam != null ? playerteam.getName() : "", playerteam1 != null ? playerteam1.getName() : "").compare(p_94564_.getProfile().getName(), p_94565_.getProfile().getName(), String::compareToIgnoreCase).result();
-+         }
-       }
-    }
- }
++                return ComparisonChain.start().compare(playerteam != null ? playerteam.getName() : "", playerteam1 != null ? playerteam1.getName() : "").compare(p_94564_.getProfile().getName(), p_94565_.getProfile().getName(), String::compareToIgnoreCase).result();
++            }
+         }
+     }
+-}
++}
 
