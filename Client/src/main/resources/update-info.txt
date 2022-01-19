@@ -1,3 +1,9 @@
+#KurarClient v1.0.0 (2022/01/19)
+
+-Optifineを追加 (Optifine 1.18.1 HD U H4)
+
+Optifineが入ったので正式リリースです
+
 #KurarClient v0.1.2 (2022/01/10)
 
 -Discordとの連携の内容を修正
