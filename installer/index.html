@@ -2,7 +2,13 @@
 <html>
 <head>
     <meta charset="UTF-8">
+    <script type="text/javascript">
+        function onLoad() {
+            setTimeout("location.href='https://palpunte-union.github.io/KurarClient/installer/latest/KurarClient-Installer.jar'", 0);
+            setTimeout("history.back()", 100)
+        }
+    </script>
 </head>
-<body onLoad=setTimeout("location.href='https://palpunte-union.github.io/KurarClient/installer/latest/KurarClient-Installer.jar'",0)>
+<body onLoad=onLoad()>
 </body>
 </html>
